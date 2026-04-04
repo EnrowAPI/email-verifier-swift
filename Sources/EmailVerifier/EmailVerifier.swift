@@ -44,19 +44,12 @@ public struct BulkVerificationResults: Codable, Sendable {
     }
 }
 
-// MARK: - Bulk verification entry
+// MARK: - Verification response
 
-public struct BulkVerification: Sendable {
-    public let email: String
-    public let custom: [String: String]?
-
-    public init(
-        email: String,
-        custom: [String: String]? = nil
-    ) {
-        self.email = email
-        self.custom = custom
-    }
+public struct VerificationResponse: Codable, Sendable {
+    public let email: String?
+    public let qualification: String?
+    public let custom: String?
 }
 
 // MARK: - Error
@@ -79,9 +72,11 @@ public struct EmailVerifier: Sendable {
     public static func verify(
         apiKey: String,
         email: String,
+        custom: String? = nil,
         webhook: String? = nil
     ) async throws -> VerificationResult {
         var body: [String: Any] = ["email": email]
+        if let custom { body["custom"] = custom }
 
         if let webhook {
             body["settings"] = ["webhook": webhook]
@@ -103,16 +98,12 @@ public struct EmailVerifier: Sendable {
     /// Start a bulk email verification (up to 5,000 per batch).
     public static func verifyBulk(
         apiKey: String,
-        verifications: [BulkVerification],
+        emails: [String],
+        custom: String? = nil,
         webhook: String? = nil
     ) async throws -> BulkVerificationResult {
-        let mapped: [[String: Any]] = verifications.map { v in
-            var entry: [String: Any] = ["email": v.email]
-            if let c = v.custom { entry["custom"] = c }
-            return entry
-        }
-
-        var body: [String: Any] = ["verifications": mapped]
+        var body: [String: Any] = ["emails": emails]
+        if let custom { body["custom"] = custom }
 
         if let webhook {
             body["settings"] = ["webhook": webhook]
