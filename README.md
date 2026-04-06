@@ -2,6 +2,8 @@
 
 [![Swift 5.9+](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/EnrowAPI/email-verifier-swift)](https://github.com/EnrowAPI/email-verifier-swift)
+[![Last commit](https://img.shields.io/github/last-commit/EnrowAPI/email-verifier-swift)](https://github.com/EnrowAPI/email-verifier-swift/commits)
 
 Verify email addresses in real time. Check deliverability, detect disposable and catch-all domains, and clean your email lists before sending.
 
@@ -13,7 +15,7 @@ Add the package with Swift Package Manager:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/enrow/email-verifier-swift", from: "1.0.0"),
+    .package(url: "https://github.com/EnrowAPI/email-verifier-swift", from: "1.0.0"),
 ]
 ```
 
@@ -84,7 +86,7 @@ Paid plans start at **$17/mo** for 1,000 credits up to **$497/mo** for 100,000 c
 ## Documentation
 
 - [Enrow API documentation](https://docs.enrow.io)
-- [Full Enrow SDK](https://github.com/enrow/enrow-swift) -- includes email finder, phone finder, reverse email lookup, and more
+- [Full Enrow SDK](https://github.com/EnrowAPI/enrow-swift) -- includes email finder, phone finder, reverse email lookup, and more
 
 ## License
 
